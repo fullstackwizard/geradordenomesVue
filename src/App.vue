@@ -1,8 +1,7 @@
 <template>
-
 <div>
   <div id="slogan" class="text-center">
-    <h1>FixGenerator Names</h1>
+    <h1>FixGenerator Names Generate</h1>
     <br>
     <h6 class="text-secondy">Gerador de nomes / Vue.js, GraphQL e Nodejs</h6>
     <h6 class="text-secondy">by Flávio Ribeiro</h6>
@@ -18,7 +17,6 @@
                 <li class="list-group-item" v-for="prefix in prefixes" v-bind:key="prefix">
                   {{ prefix }}
                 </li>
-                
               </ul>
               <br>
               <input type="text" class="form-control" placeholder="Digite o prefixo">
@@ -54,24 +52,21 @@
     </div>
   </div>
 </div>
-
-
 </template>
-
 <script>
-import 'bootstrap/dist/css/bootstrap.css'
-import 'font-awesome/css/font-awesome.css'
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
 
 export default {
-  name: 'app',
-  data: function(){
-    return {
-      prefixes: ['Air', 'Jet', 'Flight'],
-      sufixes: ['Hub', 'Station', 'Mart'],
-      domains: ['AirHub', 'AirStation', 'AirMart', 'JetHub', 'JetStation', 'JetMart', 'FlightHub', 'FlightStation', 'FlightMart']
-    };
-  }
-}
+	name: "app",
+	data: function(){
+		return {
+			prefixes: ["Air", "Jet", "Flight"],
+			sufixes: ["Hub", "Station", "Mart"],
+			domains: ["AirHub", "AirStation", "AirMart", "JetHub", "JetStation", "JetMart", "FlightHub", "FlightStation", "FlightMart"]
+		};
+	}
+};
 </script>
 
 <style>

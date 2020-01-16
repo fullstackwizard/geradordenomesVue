@@ -31,3 +31,18 @@ npm install bootstrap --save
 ## Install Font Awaysome 
 npm install font-awesome --save 
 
+## Use view error in application 
+"lint": "vue-cli-service lint --no-fix" -> Alterate in package.json 
+* Don't correct error automatics 
+npm run lint
+
+## Definindo Regras para a Aplicação 
+package.json Rules {}
+"rules": {
+      "quotes": ["error", "double" ], -> aspas 
+      "indent": ["error", "tab"],-> espaços
+      "semi": ["error", "always"] -> col
+    },
+
+
+
