@@ -16,10 +16,16 @@
               <ul class="list-group">
                 <li class="list-group-item" v-for="prefix in prefixes" v-bind:key="prefix">
                   {{ prefix }}
+                  <button v-on:click="deletePrefix(prefix)" class="btn btn-info pull-right"><span class="fa fa-trash"></span></button>
                 </li>
               </ul>
               <br>
-              <input type="text" class="form-control" placeholder="Digite o prefixo">
+              <div class="input-group">
+                <input type="text" v-model="prefix" v-on:keyup.enter="addPrefix(prefix)" class="form-control" placeholder="Digite o prefixo">
+                <div class="input-group-append">
+                  <button v-on:click="addPrefix(prefix)" class="btn btn-info"><span class="fa fa-plus"></span></button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -30,10 +36,16 @@
               <ul class="list-group">
                 <li class="list-group-item" v-for="sufix in sufixes" v-bind:key="sufix">
                   {{ sufix }}
+                  <button v-on:click="deleteSufix(sufix)" class="btn btn-info pull-right"><span class="fa fa-trash"></span></button>
                 </li>
               </ul>
               <br>
-              <input type="text" class="form-control" placeholder="Digite o prefixo">
+              <div class="input-group">
+                <input type="text" v-model="sufix" v-on:keyup.enter="addSufix(sufix)" class="form-control" placeholder="Digite o Sufixo">
+                <div class="input-group-append">
+                  <button v-on:click="addSufix(sufix)" class="btn btn-info"><span class="fa fa-plus"></span></button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -61,11 +73,39 @@ export default {
 	name: "app",
 	data: function(){
 		return {
+      prefix: "",
+      sufix: "",
 			prefixes: ["Air", "Jet", "Flight"],
 			sufixes: ["Hub", "Station", "Mart"],
 			domains: ["AirHub", "AirStation", "AirMart", "JetHub", "JetStation", "JetMart", "FlightHub", "FlightStation", "FlightMart"]
 		};
-	}
+	},
+  methods: {
+    addPrefix(prefix) {
+      this.prefixes.push(prefix);
+      this.prefix = "";
+      this.generate();
+    },
+    deletePrefix(prefix){
+      this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
+    },
+    addSufix(sufix) {
+      this.sufixes.push(sufix);
+      this.sufix = "";
+      this.generate();
+    },
+    deleteSufix(sufix){
+      this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
+    },
+    generate(){
+      this.domains = [];
+      for(const prefix of this.prefixes){
+        for(const sufix of this.sufixes){
+          this.domains.push(prefix + " " + sufix);
+        }
+      }
+    }
+  }
 };
 </script>
 

@@ -1,4 +1,4 @@
-# Gerador de Nomes Fullstack -> Vue , GraphQL , Bootstrap , Node 
+# Gerador de Nomes Fullstack -> Vue , GraphQL , Bootstrap , Node  (Projeto COMPLETO 2019 - Vue.js, GraphQL e Node)
 
 # Como instalar o projeto e rodar 
 
@@ -44,5 +44,12 @@ package.json Rules {}
       "semi": ["error", "always"] -> col
     },
 
+## Diretivas - V-bind 
 
+## Passar parametros com ENTER do teclado no Input 
+v-on:keyup.enter="addPrefix(prefix)"
+
+
+##Methodo Delete 
+v-on:click="deleteSufix(sufix)"
 
