@@ -55,8 +55,17 @@
       <div class="card">
         <div class="card-body">
           <ul class="list-group">
-            <li class="list-group-item" v-for="domain in domains" v-bind:key="domain" >
-              {{ domain }}
+            <li class="list-group-item" v-for="domain in domains" v-bind:key="domain.name" >
+              <div class="row">
+                <div class="col-md">
+                  {{ domain.name }} 
+                </div>
+                <div class="col-md text-right">
+                  <a class="btn btn-info" v-bind:href="domain.checkout"  target="blank">
+                    <span class="fa fa-shopping-cart"></span>
+                  </a>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -73,39 +82,64 @@ export default {
 	name: "app",
 	data: function(){
 		return {
-      prefix: "",
-      sufix: "",
+			prefix: "",
+			sufix: "",
 			prefixes: ["Air", "Jet", "Flight"],
-			sufixes: ["Hub", "Station", "Mart"],
-			domains: ["AirHub", "AirStation", "AirMart", "JetHub", "JetStation", "JetMart", "FlightHub", "FlightStation", "FlightMart"]
+			sufixes: ["Hub", "Station", "Mart"]
 		};
 	},
-  methods: {
-    addPrefix(prefix) {
-      this.prefixes.push(prefix);
-      this.prefix = "";
-      this.generate();
-    },
-    deletePrefix(prefix){
-      this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
-    },
-    addSufix(sufix) {
-      this.sufixes.push(sufix);
-      this.sufix = "";
-      this.generate();
-    },
-    deleteSufix(sufix){
-      this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
-    },
-    generate(){
-      this.domains = [];
-      for(const prefix of this.prefixes){
-        for(const sufix of this.sufixes){
-          this.domains.push(prefix + " " + sufix);
-        }
-      }
-    }
-  }
+	methods: {
+		addPrefix(prefix) {
+			this.prefixes.push(prefix);
+			this.prefix = "";
+			//this.generate();
+		},
+		deletePrefix(prefix){
+			this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
+			//this.generate();
+		},
+		addSufix(sufix) {
+			this.sufixes.push(sufix);
+			this.sufix = "";
+			//this.generate();
+		},
+		deleteSufix(sufix){
+			this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
+			//this.generate();
+		}
+		/* generate(){
+			this.domains = [];
+			for(const prefix of this.prefixes){
+				for(const sufix of this.sufixes){
+					this.domains.push(prefix + " " + sufix);
+				}
+			}
+		} */
+	},
+	computed: {
+		domains(){
+			const domains = [];
+			for(const prefix of this.prefixes){
+				for(const sufix of this.sufixes){
+					const name = prefix + sufix;
+					const url = name.toLowerCase();
+					const checkout = `https://registro.br/busca-dominio?fqdn=${url}.com.br`;
+					//domains.push(prefix + " " + sufix);
+					domains.push({
+						name,
+						checkout
+					});
+          
+				}
+			}  
+			return domains;
+		}
+	}
+
+	/* created() {
+		this.generate();
+	}
+  */
 };
 </script>
 
