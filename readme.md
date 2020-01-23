@@ -53,3 +53,6 @@ v-on:keyup.enter="addPrefix(prefix)"
 ##Methodo Delete 
 v-on:click="deleteSufix(sufix)"
 
+#Lifecicle intercepta ciclo de vida 
+- instancia componentes new Vue() 
+
